@@ -1,0 +1,15 @@
+{% extends 'catalog/base.html' %}
+
+{% block title %}{{ product.name }}{% endblock %}
+
+{% block content %}
+    <div class="product-detail">
+        <h2>{{ product.name }}</h2>
+        {% if product.image %}
+        <img src="{{ product.image.url }}" alt="{{ product.name }}" class="detail-image">
+        {% endif %}
+        <p class="price">${{ product.price }}</p>
+        <div class="description">{{ product.description|linebreaks }}</div>
+        <p><a href="{% url 'catalog:product_list' %}">Back to list</a></p>
+    </div>
+{% endblock %}

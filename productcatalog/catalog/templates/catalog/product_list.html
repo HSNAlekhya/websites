@@ -1,0 +1,35 @@
+{% extends 'catalog/base.html' %}
+
+{% block title %}Products{% endblock %}
+
+{% block content %}
+    <ul class="product-list">
+        {% for product in products %}
+        <li class="product-item">
+            <a href="{% url 'catalog:product_detail' product.pk %}">
+                {% if product.image %}
+                    <img src="{{ product.image.url }}" alt="{{ product.name }}" class="thumb">
+                {% else %}
+                    <img src="https://via.placeholder.com/240x160?text=No+Image" alt="No image" class="thumb">
+                {% endif %}
+                <h2>{{ product.name }}</h2>
+            </a>
+            <p class="price">${{ product.price }}</p>
+        </li>
+        {% empty %}
+        <li class="empty-state">
+            <div class="empty-inner">
+                <h2>No products yet</h2>
+                <p>There are no products in the catalog. Add products via the <a href="/admin/">admin</a> or drop sample data.</p>
+                <div class="demo-card">
+                    <a href="#">
+                        <img src="https://via.placeholder.com/360x240?text=Sample+Product" alt="Sample product" class="thumb">
+                        <h3>Sample Product</h3>
+                    </a>
+                    <p class="price">$0.00</p>
+                </div>
+            </div>
+        </li>
+        {% endfor %}
+    </ul>
+{% endblock %}
