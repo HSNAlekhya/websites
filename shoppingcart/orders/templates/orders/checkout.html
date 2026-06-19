@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Checkout</title>
+    </head>
+    <body>
+        <h1>Checkout</h1>
+        {% if items %}
+        <ul>
+            {% for item in items %}
+            <li>{{ item.quantity }} x {{ item.product.name }} — ${{ item.product.price }}</li>
+            {% empty %}
+            <li>No items to checkout.</li>
+            {% endfor %}
+        </ul>
+        {% else %}
+        <ul>
+            <li>No items to checkout.</li>
+        </ul>
+        {% endif %}
+        <form method="post">
+        {% csrf_token %}
+        <button type="submit">Place Order</button>
+        </form>
+    </body>
+</html>
