@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="300" height="200">
+  <rect width="100%" height="100%" fill="#f9f9f9"/>
+  <text x="20" y="40" font-family="Arial" font-size="16">Sample Receipt</text>
+  <text x="20" y="70" font-family="Arial" font-size="12">Store: Demo Mart</text>
+  <text x="20" y="100" font-family="Arial" font-size="12">Total: $12.34</text>
+</svg>

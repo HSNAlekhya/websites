@@ -1,0 +1,4 @@
+Sample receipt text file
+Store: Demo Mart
+Total: $12.34
+Date: 2026-06-19

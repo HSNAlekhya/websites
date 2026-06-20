@@ -1,0 +1,26 @@
+<!doctype html>
+{% load static %}
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>{% block title %}Personal Finance{% endblock %}</title>
+        <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    </head>
+    <body{% if alt_theme %} class="alt-theme"{% endif %}>
+        <header>
+            <h1>Personal Finance</h1>
+            <nav>
+            <a href="/">Dashboard</a> |
+            <a href="/transactions/">Transactions</a> |
+            <a href="/add/">Add Transaction</a>
+            </nav>
+        </header>
+        <main>
+            {% block content %}{% endblock %}
+        </main>
+        <footer>
+            <p>&copy; {{ year }}</p>
+        </footer>
+    </body>
+</html>

@@ -1,0 +1,67 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Dashboard - Personal Finance{% endblock %}
+
+{% block content %}
+<section class="hero">
+	<div class="hero-left">
+		{% if last_action_msg %}
+		<div class="notice">{{ last_action_msg }}</div>
+		{% endif %}
+		<h2>Welcome to your colorful Personal Finance Dashboard</h2>
+		<p class="description">Track your spending, visualize trends, and discover saving opportunities. This dashboard highlights recent activity and provides quick insights so you can make smart financial decisions at a glance.</p>
+		<div class="highlights">
+			<a class="pill" href="{% url 'overview' %}">Overview</a>
+			<a class="pill" href="{% url 'transactions' %}">Recent transactions</a>
+			<a class="pill" href="{% url 'monthly' %}">Monthly trends</a>
+		</div>
+	</div>
+	<div class="hero-right">
+		<img src="{% static 'images/chart.svg' %}" alt="Spending chart" class="hero-image">
+	</div>
+</section>
+
+<section class="actions">
+	<div class="card">
+		<h3>Quick Actions</h3>
+		<p>Use these buttons to manage your finances quickly. Buttons are interactive — click to navigate or toggle the site theme.</p>
+		<div class="actions-row">
+				<a class="btn" href="{% url 'add_transaction' %}">Add Transaction</a>
+				<a class="btn" href="{% url 'transactions' %}">View Transactions</a>
+				<a class="btn" href="{% url 'action_handler' 'toggle_theme' %}">Toggle Color</a>
+		</div>
+	</div>
+
+	<div class="card stats">
+		<h3>Snapshot</h3>
+		<p class="stat-line"><span class="stat-value">${{ overview_total }}</span> <span class="stat-label">All time total (USD)</span></p>
+		<p class="stat-line"><span class="stat-value">₹{{ overview_total_inr }}</span> <span class="stat-label">All time total (INR)</span></p>
+		<p class="stat-line"><span class="stat-value">{{ overview_count }}</span> <span class="stat-label">Transactions</span></p>
+		<p class="note">Tip: Click <em>Add Transaction</em> to attach receipts and they'll appear on the Transactions page.</p>
+	</div>
+</section>
+
+<section class="monthly">
+	<div class="card">
+		<h3>Monthly Trends</h3>
+		<p class="note">Values below show totals for the last 6 months.</p>
+		<div class="chart">
+			<svg width="100%" height="80" viewBox="0 0 600 80" preserveAspectRatio="none">
+				{% if chart_bars %}
+					{% for b in chart_bars %}
+						<rect x="{{ b.x }}" y="{{ b.y }}" width="{{ b.width }}" height="{{ b.height }}" fill="#118AB2"></rect>
+					{% endfor %}
+				{% else %}
+					<text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" fill="#777">No data</text>
+				{% endif %}
+			</svg>
+			<div class="chart-labels">
+				{% for b in chart_bars %}
+					<div class="chart-label">{{ b.label }}</div>
+				{% endfor %}
+			</div>
+		</div>
+	</div>
+</section>
+{% endblock %}

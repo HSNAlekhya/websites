@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Overview - Personal Finance{% endblock %}
+
+{% block content %}
+<div class="card">
+  <h2>Overview</h2>
+  {% if last_action_msg %}<div class="notice">{{ last_action_msg }}</div>{% endif %}
+  <p>Total spent: <strong>${{ summary.total }}</strong></p>
+  <p>Transactions: <strong>{{ summary.count }}</strong></p>
+  <h3>Recent Activity</h3>
+  <table>
+    <thead><tr><th>Date</th><th>Description</th><th>Amount</th></tr></thead>
+    <tbody>
+      {% for t in summary.recent %}
+      <tr><td>{{ t.date }}</td><td>{{ t.description }}</td><td>{{ t.amount }}</td></tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+{% endblock %}

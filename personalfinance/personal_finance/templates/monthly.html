@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Monthly Trends - Personal Finance{% endblock %}
+
+{% block content %}
+<div class="card">
+  <h2>Monthly Trends</h2>
+  {% if last_action_msg %}<div class="notice">{{ last_action_msg }}</div>{% endif %}
+  <p>Below are totals for the last 6 months.</p>
+  <div class="chart">
+    <canvas id="monthlyChart" width="600" height="240"></canvas>
+  </div>
+  <div class="chart-labels">
+    {% for b in chart_bars %}
+      <div class="chart-label">{{ b.label }}</div>
+    {% endfor %}
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script>
+    (function(){
+      const labels = {{ labels_json|safe }};
+      const data = {{ values_json|safe }};
+      const ctx = document.getElementById('monthlyChart').getContext('2d');
+      new Chart(ctx, {
+        type: 'bar',
+        data: {
+          labels: labels,
+          datasets: [{
+            label: 'Monthly total',
+            data: data,
+            backgroundColor: 'rgba(239,71,111,0.8)'
+          }]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          scales: {
+            y: { beginAtZero: true }
+          }
+        }
+      });
+    })();
+  </script>
+</div>
+{% endblock %}
