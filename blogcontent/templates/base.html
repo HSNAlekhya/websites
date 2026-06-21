@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="en">
+        <head>
+                <meta charset="utf-8">
+                <meta name="viewport" content="width=device-width, initial-scale=1">
+                <title>Blog</title>
+                <style>
+                        body{font-family:Segoe UI,Arial,Helvetica,sans-serif;background:linear-gradient(180deg,#ffffff,#f3f4f6);color:#111;margin:0}
+                        header{background:#2563eb;color:#fff;padding:12px}
+                        header a{color:#fff;text-decoration:none;font-weight:600}
+                        main{padding:24px}
+                        a.button{background:#06b6d4;color:#fff;padding:8px 12px;border-radius:6px;text-decoration:none}
+                        footer{background:#0b1220;color:#fff;padding:10px;text-align:center;margin-top:24px}
+                </style>
+        </head>
+        <body>
+                <header>
+                        <nav><a href="/">Home</a></nav>
+                </header>
+                <main>
+                        {% block content %}{% endblock %}
+                </main>
+                <footer>
+                        <p>&copy; {% now "Y" %}</p>
+                </footer>
+        </body>
+</html>

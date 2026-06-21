@@ -1,0 +1,9 @@
+{% extends "base.html" %}
+{% block content %}
+<h1>{{ post.title }}</h1>
+<p><small>Published: {{ post.created|date:"F j, Y" }} — Updated: {{ post.updated|date:"F j, Y" }}</small></p>
+<div>
+        {{ post.body|linebreaks }}
+</div>
+<p><a href="{% url 'blog:post_list' %}">Back to list</a></p>
+{% endblock %}
