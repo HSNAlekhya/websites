@@ -1,0 +1,17 @@
+{% load static %}
+<!doctype html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Delete Playlist</title>
+        <link rel="stylesheet" href="{% static 'video_streaming/style.css' %}">
+    </head>
+    <body>
+        <nav><a href="/">Home</a> | <a href="/playlist/">Playlists</a></nav>
+        <div class="container">
+        <h1>Delete Playlist</h1>
+        <p>Are you sure you want to delete "{{ object.name }}"?</p>
+        <form method="post">{% csrf_token %}<button class="btn btn-danger" type="submit">Yes, delete</button></form>
+        </div>
+    </body>
+</html>

@@ -1,0 +1,29 @@
+<!doctype html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Search results for "{{ query }}"</title>
+    </head>
+    <body>
+        <h1>Search results for "{{ query }}"</h1>
+        <h2>Videos</h2>
+        <ul>
+        {% for v in videos %}
+            <li>
+                <a href="/video/{{ v.pk }}/">{{ v.title }}</a>
+                <a href="/video/{{ v.pk }}/edit/" class="btn" style="margin-left:8px;">Add a video or add a url</a>
+            </li>
+        {% empty %}
+            <li>No matching videos.</li>
+        {% endfor %}
+        </ul>
+        <h2>Audios</h2>
+        <ul>
+        {% for a in audios %}
+            <li><a href="/audio/{{ a.pk }}/">{{ a.title }}</a></li>
+        {% empty %}
+            <li>No matching audios.</li>
+        {% endfor %}
+        </ul>
+    </body>
+</html>

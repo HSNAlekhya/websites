@@ -1,0 +1,39 @@
+<!doctype html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>{{ object.title }}</title>
+        <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+        <meta http-equiv="Pragma" content="no-cache">
+        <meta http-equiv="Expires" content="0">
+    </head>
+    <body>
+        <h1>{{ object.title }}</h1>
+        <p>{{ object.description }}</p>
+                <!-- Play-on-demand: fetch the freshest URL from server and play it. -->
+                <div class="media-player">
+                    <p class="small">{% if object.file %}Source: Uploaded file{% elif object.external_url %}Source: External URL{% else %}No video attached{% endif %}</p>
+                    {% if object.file or object.external_url %}
+                        <p>
+                            <a href="/video/{{ object.pk }}/edit/" class="btn" style="margin-left:8px;">Edit</a>
+                        </p>
+                        <div id="player-container">
+                            <div class="small" style="margin-bottom:6px;color:#444;">Playback has been disabled on this site.</div>
+                        </div>
+                        <div class="small" style="margin-top:6px;color:#666;">Server sources: <a href="{{ object.file.url }}" class="btn">Open file</a></div>
+                        <div class="file-grid" style="margin-top:8px;">
+                            {% if media_files %}
+                                {% for f in media_files %}
+                                    <a href="{{ f.url }}" class="btn file-item">{{ f.name }}</a>
+                                {% endfor %}
+                            {% else %}
+                                <div class="small">No media files available.</div>
+                            {% endif %}
+                        </div>
+                    {% else %}
+                        <p><a href="/video/{{ object.pk }}/edit/" class="btn">Add a video or add a url</a></p>
+                    {% endif %}
+                </div>
+                <!-- Video player removed site-wide. JS for playback/deletion was removed. -->
+    </body>
+</html>

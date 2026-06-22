@@ -1,0 +1,16 @@
+{% load static %}
+<!doctype html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>{% if object %}Edit{% else %}Create{% endif %} Playlist</title>
+        <link rel="stylesheet" href="{% static 'video_streaming/style.css' %}">
+    </head>
+    <body>
+        <nav><a href="/">Home</a> | <a href="/playlist/">Playlists</a></nav>
+        <div class="container">
+        <h1>{% if object %}Edit{% else %}Create{% endif %} Playlist</h1>
+        <form class="form" method="post">{% csrf_token %}{{ form.as_p }}<button class="btn" type="submit">Save</button></form>
+        </div>
+    </body>
+</html>

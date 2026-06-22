@@ -1,0 +1,27 @@
+{% load static %}
+<!doctype html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>{{ object.name }}</title>
+        <link rel="stylesheet" href="{% static 'video_streaming/style.css' %}">
+    </head>
+    <body>
+        <nav><a href="/">Home</a> | <a href="/playlist/">Playlists</a></nav>
+        <div class="container">
+        <h1>{{ object.name }}</h1>
+        <p>Owner: {{ object.owner.username }}</p>
+        <h2>Videos</h2>
+        <ul class="video-list">
+            {% for v in object.videos.all %}
+            <li>
+                <a href="/video/{{ v.pk }}/">{{ v.title }}</a>
+                <a href="/video/{{ v.pk }}/edit/" class="btn" style="margin-left:8px;">Add a video or add a url</a>
+            </li>
+            {% empty %}
+            <li>No videos in this playlist.</li>
+            {% endfor %}
+        </ul>
+        </div>
+    </body>
+</html>

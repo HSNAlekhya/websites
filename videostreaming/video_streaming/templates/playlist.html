@@ -1,0 +1,30 @@
+<!doctype html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Playlists</title>
+        {% load static %}
+        <link rel="stylesheet" href="{% static 'video_streaming/style.css' %}">
+    </head>
+    <body>
+        <nav>
+            <a href="/">Home</a>
+            <a href="/videos/">Videos</a>
+        </nav>
+        <div class="container">
+            <h1>Playlists</h1>
+            <p><a href="/playlist/create/">Create Playlist</a></p>
+            {% if playlists %}
+                {% for p in playlists %}
+                    <div class="card">
+                        <h3>{{ p.name }}</h3>
+                        <p>Owner: {{ p.owner.username }}</p>
+                        <p>Videos: {{ p.videos.count }}</p>
+                    </div>
+                {% endfor %}
+            {% else %}
+                <p>No playlists yet.</p>
+            {% endif %}
+        </div>
+    </body>
+</html>

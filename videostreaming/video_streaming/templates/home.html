@@ -1,0 +1,90 @@
+<!doctype html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Home</title>
+        {% load static %}
+        <link rel="stylesheet" href="{% static 'video_streaming/style.css' %}">
+    </head>
+    <body>
+        <nav>
+            <a href="/">Home</a>
+            <a href="/videos/">Videos</a>
+            <a href="/playlist/">Playlists</a>
+        </nav>
+        <div class="container">
+            <div class="hero">
+                <h1>Welcome to the Video Streaming App</h1>
+                <p>Explore curated videos and playlists — sample data shown below.</p>
+            </div>
+
+            <div class="columns">
+                <div class="col">
+                    <div class="card">
+                        <h2>Latest Videos</h2>
+                        <ul class="video-list">
+                            {% if latest_videos %}
+                                {% for v in latest_videos %}
+                                    <li>
+                                        <a href="/video/{{ v.pk }}/">{{ v.title }}</a>
+                                        <span class="badge">{{ v.created_at|date:"M j" }}</span>
+                                        - <a href="/video/{{ v.pk }}/edit/">Edit</a>
+                                        - <a href="/video/{{ v.pk }}/delete/">Delete</a>
+                                        <a href="/video/{{ v.pk }}/edit/" class="btn" style="margin-left:8px;">Add a video or add a url</a>
+                                    </li>
+                                {% endfor %}
+                            {% else %}
+                                <li>No recent videos.</li>
+                            {% endif %}
+                        </ul>
+                    </div>
+                    <div class="card">
+                        <h2>Popular Now</h2>
+                        <ul class="video-list">
+                            {% if popular_videos %}
+                                {% for v in popular_videos %}
+                                    <li>
+                                        <a href="/video/{{ v.pk }}/">{{ v.title }}</a>
+                                        <span class="badge">{{ v.views_count }}</span>
+                                        - <a href="/video/{{ v.pk }}/edit/">Edit</a>
+                                        - <a href="/video/{{ v.pk }}/delete/">Delete</a>
+                                        <a href="/video/{{ v.pk }}/edit/" class="btn" style="margin-left:8px;">Add a video or add a url</a>
+                                    </li>
+                                {% endfor %}
+                            {% else %}
+                                <li>No popular videos yet.</li>
+                            {% endif %}
+                        </ul>
+                    </div>
+                </div>
+
+                <aside class="col">
+                    <div class="card">
+                        <h3>Playlists</h3>
+                        {% if playlists %}
+                            {% for p in playlists %}
+                                <div class="playlist-item">
+                                    <a href="/playlist/{{ p.pk }}/">{{ p.name }}</a>
+                                    <span class="badge">{{ p.videos.count }}</span>
+                                    - <a href="/playlist/{{ p.pk }}/edit/">Edit</a>
+                                    - <a href="/playlist/{{ p.pk }}/delete/">Delete</a>
+                                </div>
+                            {% endfor %}
+                        {% else %}
+                            <div>No playlists yet.</div>
+                        {% endif %}
+                    </div>
+                    <div class="card">
+                        <h3>Quick Links</h3>
+                        <ul>
+                            <li><a href="/videos/">All Videos</a></li>
+                            <li><a href="/video/create/">Create Video</a></li>
+                            <li><a href="/playlist/create/">Create Playlist</a></li>
+                            <li><a href="/search/?q=django">Search: Django</a></li>
+                        </ul>
+                    </div>
+                </aside>
+            </div>
+        </div>
+    </body>
+</html>

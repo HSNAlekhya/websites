@@ -1,0 +1,39 @@
+<!doctype html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Videos</title>
+        {% load static %}
+        <link rel="stylesheet" href="{% static 'video_streaming/style.css' %}">
+    </head>
+    <body>
+        <nav>
+        <a href="/">Home</a>
+        <a href="/playlist/">Playlists</a>
+        </nav>
+        <div class="container">
+        <h1>Videos</h1>
+        <p><a href="/video/create/">Create New Video</a></p>
+        <ul class="video-list">
+            {% for v in videos %}
+            <li>
+                <a href="/video/{{ v.pk }}/">{{ v.title }}</a>
+                - <a href="/video/{{ v.pk }}/edit/">Edit</a>
+                - <a href="/video/{{ v.pk }}/delete/">Delete</a>
+                <a href="/video/{{ v.pk }}/edit/" class="btn" style="margin-left:8px;">Add a video or add a url</a>
+                {% if v.external_url and not v.file %}
+                <span class="badge">External</span>
+                {% elif v.file %}
+                <span class="badge">Uploaded</span>
+                {% elif v.external_url %}
+                <span class="badge">External</span>
+                {% endif %}
+                <div class="small">Uploaded: {{ v.created_at|date:"M j, Y" }} • Views: {{ v.views_count }}</div>
+            </li>
+            {% empty %}
+            <li>No videos found.</li>
+            {% endfor %}
+        </ul>
+        </div>
+    </body>
+</html>

@@ -1,0 +1,21 @@
+<h2>Uploaded Files</h2>
+
+<table>
+    <tr>
+        <th>Title</th>
+        <th>File</th>
+    </tr>
+
+    {% for file in files %}
+    <tr>
+        <td>{{ file.title }}</td>
+        <td>
+            {% if file.file %}
+                <a href="{{ file.file.url }}">
+                    {{ file.file.name }}
+                </a>
+            {% endif %}
+        </td>
+    </tr>
+    {% endfor %}
+</table>
