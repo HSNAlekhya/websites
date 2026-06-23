@@ -1,0 +1,83 @@
+{% extends "editor/base.html" %}
+
+{% block content %}
+<style>
+    .doc {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 8px;
+        margin-bottom: 5px;
+        background: white;
+        border: 2px solid #a1c9f2;
+        border-radius: 10px;
+
+    }
+
+    .doc button {
+        margin-left: 5px;
+        background: #eaf2eb;
+        border: 2px solid #a1c9f2;
+        border-radius: 10px;
+    }
+    .sidebar {
+        width: 250px;
+        background: #a1c9f2;
+        padding: 10px;
+        height: 100vh;
+        overflow-y: auto;
+    }
+    .content {
+        flex: 1;
+        padding: 20px;
+        background: #f6a4ed;
+        border: 2px solid #a1c9f2;
+        border-radius: 10px;
+    }
+    .doc:hover {
+        background: #afa0ac;
+    }
+    .content button {
+        background: #00ff1edb;
+        border: 2px solid #131124;
+        border-radius: 10px;
+    }
+    .content button:hover {
+        background: #026a1f;
+        color: white;
+    }
+</style>
+
+<div class="sidebar">
+    <h3>Documents</h3>
+
+    {% for doc in documents %}
+        <div class="doc">
+            {{ doc.title }}
+
+            <a href="{% url 'edit' doc.id %}">
+                <button>Edit</button>
+            </a>
+
+            <a href="{% url 'delete' doc.id %}">
+                <button>Delete</button>
+            </a>
+        </div>
+    {% empty %}
+        <p>No documents</p>
+    {% endfor %}
+</div>
+
+<div class="content">
+
+    <h2>Create New Document</h2>
+
+    <form method="POST">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Save</button>
+    </form>
+
+</div>
+
+{% endblock %}

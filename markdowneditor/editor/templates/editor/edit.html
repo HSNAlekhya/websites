@@ -1,0 +1,23 @@
+{% extends "editor/base.html" %}
+
+{% block content %}
+
+<div class="sidebar">
+    <a href="{% url 'index' %}">
+        ← Back
+    </a>
+</div>
+
+<div class="content">
+
+    <h2>Edit Document: {{ document.title }}</h2>
+
+    <form method="POST">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Update</button>
+    </form>
+
+</div>
+
+{% endblock %}

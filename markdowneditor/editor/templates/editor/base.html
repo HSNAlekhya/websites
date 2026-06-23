@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Markdown Editor</title>
+    <style>
+        body {
+            font-family: Arial;
+            margin: 0;
+        }
+
+        .container {
+            display: flex;
+        }
+
+        .sidebar {
+            width: 250px;
+            background: #f2f2f2;
+            padding: 10px;
+            height: 100vh;
+        }
+
+        .content {
+            flex: 1;
+            padding: 20px;
+        }
+
+        .doc {
+            padding: 8px;
+            margin-bottom: 5px;
+            background: white;
+        }
+
+        button {
+            padding: 5px 10px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    {% block content %}{% endblock %}
+</div>
+
+</body>
+</html>
