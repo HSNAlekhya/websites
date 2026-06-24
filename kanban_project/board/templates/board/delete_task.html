@@ -1,0 +1,24 @@
+{% extends 'board/base.html' %}
+
+{% block content %}
+
+<h2>Delete Task</h2>
+
+<p>
+    Are you sure you want to delete
+    <strong>{{ task.title }}</strong>?
+</p>
+
+<form method="POST">
+    {% csrf_token %}
+
+    <button type="submit" class="delete-btn">
+        Delete
+    </button>
+
+    <a href="{% url 'board' %}" class="btn-cancel">
+        Cancel
+    </a>
+</form>
+
+{% endblock %}

@@ -1,0 +1,21 @@
+{% extends 'board/base.html' %}
+
+{% block content %}
+
+<h1>Create Task</h1>
+
+<form method="POST">
+    {% csrf_token %}
+
+    {{ form.as_p }}
+
+    <button type="submit" class="btn">
+        Save Task
+    </button>
+
+    <a href="{% url 'board' %}" class="btn-cancel">
+        Cancel
+    </a>
+</form>
+
+{% endblock %}
