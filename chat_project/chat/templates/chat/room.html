@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background-color: #f0fcec;
+        }
+        p {
+            padding: 5px;
+        }
+        form {
+            margin-bottom: 20px;
+            text-align: center;
+            border: 2px solid #030303;
+            padding: 20px;
+            border-radius: 10px;
+            background-color: #89a3c3;
+        }
+        button {
+            padding: 5px 10px;
+            font-size: 14px;
+            background-color: #005510;
+            color: white;
+            border: none;
+            cursor: pointer;
+            border-radius: 10px;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        hr {
+            margin: 20px 0;
+            border: 1px solid #020202;
+        }
+    </style>
+    <title>Chat Room</title>
+
+</head>
+<body>
+
+<h2>Chat</h2>
+<container></container>
+<form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+
+    <button type="submit">
+        Send
+    </button>
+</form>
+
+<hr>
+
+{% for message in messages %}
+    <p>
+        <b>{{ message.username }}</b> :
+        {{ message.text }}
+    </p>
+{% endfor %}
+
+</body>
+</html>
