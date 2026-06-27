@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <title>Live Weather App</title>
+
+    {% load static %}
+
+    <link rel="stylesheet" href="{% static 'weather/style.css' %}">
+
+</head>
+
+<body>
+
+<div class="container">
+
+<h1>Live Weather Application</h1>
+
+<form method="POST">
+
+    {% csrf_token %}
+
+    {{ form }}
+
+    <button type="submit">
+        Search
+    </button>
+
+</form>
+
+{% if weather %}
+
+<div class="card">
+
+<h2>{{ weather.city }}</h2>
+
+<img src="https://openweathermap.org/img/wn/{{ weather.icon }}@2x.png">
+
+<p><strong>{{ weather.description }}</strong></p>
+
+<p>Temperature : {{ weather.temperature }} °C</p>
+
+<p>Feels Like : {{ weather.feels_like }} °C</p>
+
+<p>Humidity : {{ weather.humidity }} %</p>
+
+<p>Pressure : {{ weather.pressure }} hPa</p>
+
+<p>Wind Speed : {{ weather.wind }} m/s</p>
+
+</div>
+
+{% endif %}
+
+</div>
+
+</body>
+
+</html>
