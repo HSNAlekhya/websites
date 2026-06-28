@@ -1,0 +1,23 @@
+{% extends 'receipes/base.html' %}
+
+{% block content %}
+
+<h2>Recipes</h2>
+
+{% for recipe in recipes %}
+
+<div class="card">
+
+<h3>{{ recipe.title }}</h3>
+
+<p>{{ recipe.description }}</p>
+
+</div>
+
+{% empty %}
+
+<p>No recipes available.</p>
+
+{% endfor %}
+
+{% endblock %}

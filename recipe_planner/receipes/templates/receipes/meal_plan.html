@@ -1,0 +1,45 @@
+{% extends 'receipes/base.html' %}
+
+{% block content %}
+
+<h2>Meal Planner</h2>
+
+<a class="button" href="{% url 'add_meal' %}">Add Meal</a>
+
+<table>
+
+<tr>
+
+<th>Day</th>
+
+<th>Meal</th>
+
+<th>Recipe</th>
+
+</tr>
+
+{% for meal in meals %}
+
+<tr>
+
+<td>{{ meal.day }}</td>
+
+<td>{{ meal.meal_type }}</td>
+
+<td>{{ meal.recipe.title }}</td>
+
+</tr>
+
+{% empty %}
+
+<tr>
+
+<td colspan="3">No meals planned.</td>
+
+</tr>
+
+{% endfor %}
+
+</table>
+
+{% endblock %}

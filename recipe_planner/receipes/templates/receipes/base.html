@@ -1,0 +1,40 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Recipe Planner</title>
+
+    <link rel="stylesheet" href="{% static 'receipes/style.css' %}">
+</head>
+
+<body>
+
+<header>
+
+<h1>Recipe Planner</h1>
+
+<nav>
+
+<a href="{% url 'recipe_list' %}">Recipes</a>
+
+<a href="{% url 'search' %}">Search</a>
+
+<a href="{% url 'meal_plan' %}">Meal Planner</a>
+
+<a href="{% url 'add_recipe' %}">Add Recipe</a>
+
+</nav>
+
+</header>
+
+<div class="container">
+
+{% block content %}
+
+{% endblock %}
+
+</div>
+
+</body>
+</html>

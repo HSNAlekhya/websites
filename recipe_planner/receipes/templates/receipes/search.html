@@ -1,0 +1,31 @@
+{% extends 'receipes/base.html' %}
+
+{% block content %}
+
+<h2>Search Recipes</h2>
+
+<form method="GET">
+
+<input type="text" name="q" placeholder="Search recipe">
+
+<button type="submit">Search</button>
+
+</form>
+
+{% for recipe in recipes %}
+
+<div class="card">
+
+<h3>{{ recipe.title }}</h3>
+
+<p>{{ recipe.description }}</p>
+
+</div>
+
+{% empty %}
+
+<p>No recipes found.</p>
+
+{% endfor %}
+
+{% endblock %}
