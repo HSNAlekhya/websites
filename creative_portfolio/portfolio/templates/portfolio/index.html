@@ -1,0 +1,80 @@
+{% extends 'portfolio/base.html' %}
+
+{% block content %}
+
+<header>
+
+<div class="navbar">
+
+<h2>Creative.</h2>
+
+
+</div>
+
+</header>
+
+<section class="hero">
+
+<div class="hero-left">
+
+<h4>Hello, I'm</h4>
+
+<h1>Alekhya</h1>
+
+<h2>Creative Web Developer</h2>
+
+<p>
+
+I build modern websites and user experiences using
+Django, Python, HTML, CSS and JavaScript.
+
+</p>
+
+<a href="{% url 'portfolio' %}" class="btn">View Portfolio</a>
+
+</div>
+
+<div class="hero-right">
+
+<img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43"
+alt="profile">
+
+</div>
+
+</section>
+
+<section class="cards">
+
+<div class="card">
+
+<h3>UI Design</h3>
+
+<p>Beautiful and modern interface designs.</p>
+
+</div>
+
+<div class="card">
+
+<h3>Web Development</h3>
+
+<p>Responsive Django applications.</p>
+
+</div>
+
+<div class="card">
+
+<h3>Brand Identity</h3>
+
+<p>Creative digital experiences.</p>
+
+</div>
+
+</section>
+
+<footer>
+
+<p>© 2026 Creative Portfolio</p>
+
+</footer>
+
+{% endblock %}

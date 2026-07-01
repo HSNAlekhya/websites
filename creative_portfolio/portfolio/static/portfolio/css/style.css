@@ -1,0 +1,195 @@
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Poppins,sans-serif;
+}
+
+body{
+
+    background:#0f172a;
+    color:white;
+
+}
+
+header{
+
+    width:100%;
+    padding:20px 10%;
+
+}
+
+.navbar{
+
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+
+}
+
+nav a{
+
+    color:white;
+    text-decoration:none;
+    margin-left:25px;
+    transition:.3s;
+
+}
+
+nav a:hover{
+
+    color:#38bdf8;
+
+}
+
+.hero{
+
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    min-height:90vh;
+    padding:0 10%;
+    gap:60px;
+
+}
+
+.hero-left{
+
+    flex:1;
+
+}
+
+.hero-left h4{
+
+    color:#38bdf8;
+    margin-bottom:10px;
+
+}
+
+.hero-left h1{
+
+    font-size:60px;
+    margin-bottom:15px;
+
+}
+
+.hero-left h2{
+
+    color:#94a3b8;
+    margin-bottom:20px;
+
+}
+
+.hero-left p{
+
+    line-height:1.8;
+    color:#cbd5e1;
+    margin-bottom:30px;
+
+}
+
+.btn{
+
+    display:inline-block;
+    background:#38bdf8;
+    color:white;
+    padding:15px 35px;
+    border-radius:50px;
+    text-decoration:none;
+    transition:.3s;
+
+}
+
+.btn:hover{
+
+    background:#0284c7;
+
+}
+
+.hero-right{
+
+    flex:1;
+    display:flex;
+    justify-content:center;
+
+}
+
+.hero-right img{
+
+    width:350px;
+    height:350px;
+    border-radius:50%;
+    object-fit:cover;
+    border:8px solid #38bdf8;
+
+}
+
+.cards{
+
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+    gap:30px;
+    padding:100px 10%;
+
+}
+
+.card{
+
+    background:#1e293b;
+    padding:40px;
+    border-radius:15px;
+    transition:.4s;
+
+}
+
+.card:hover{
+
+    transform:translateY(-10px);
+    background:#334155;
+
+}
+
+.card h3{
+
+    margin-bottom:15px;
+
+}
+
+footer{
+
+    padding:30px;
+    text-align:center;
+    color:#94a3b8;
+
+}
+
+@media(max-width:900px){
+
+.hero{
+
+flex-direction:column-reverse;
+text-align:center;
+padding-top:60px;
+
+}
+
+.hero-left h1{
+
+font-size:45px;
+
+}
+
+.hero-right img{
+
+width:250px;
+height:250px;
+
+}
+
+nav{
+
+display:none;
+
+}
+
+}
