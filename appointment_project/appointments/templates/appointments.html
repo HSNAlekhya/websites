@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Appointments</title>
+    <link rel="stylesheet" href="/static/css/style.css">
+</head>
+<body>
+
+<div class="container">
+
+<h2>Appointments</h2>
+
+<table>
+
+<tr>
+<th>Patient</th>
+<th>Doctor</th>
+<th>Date</th>
+<th>Time</th>
+</tr>
+
+{% for appointment in appointments %}
+
+<tr>
+<td>{{ appointment.patient_name }}</td>
+<td>{{ appointment.doctor_name }}</td>
+<td>{{ appointment.appointment_date }}</td>
+<td>{{ appointment.appointment_time }}</td>
+</tr>
+
+{% endfor %}
+
+</table>
+
+<a href="/">Home</a>
+
+</div>
+
+</body>
+</html>

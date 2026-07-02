@@ -1,0 +1,58 @@
+body {
+    font-family: Arial, sans-serif;
+    background: #c76ef0;
+}
+
+.container {
+    width: 60%;
+    margin: 40px auto;
+    background: rgb(168, 240, 157);
+    padding: 20px;
+    border-radius: 10px;
+}
+
+h1,
+h2 {
+    color: #26313b;
+}
+
+a {
+    display: inline-block;
+    margin: 10px;
+    padding: 10px 15px;
+    background: rgb(4, 98, 175);
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+}
+
+button {
+    background: rgb(2, 95, 2);
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    border-radius: 10px;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+table,
+th,
+td {
+    border: 1px solid gray;
+}
+
+th {
+    background: rgb(2, 77, 138);
+    color: white;
+}
+
+th,
+td {
+    padding: 10px;
+    text-align: center;
+}
