@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h2>Assets List</h2>
+
+<table border="1" cellpadding="10" cellspacing="0">
+<tr>
+    <th>Name</th>
+    <th>Type</th>
+    <th>Serial</th>
+    <th>Status</th>
+    <th>Action</th>
+</tr>
+
+{% for asset in assets %}
+<tr>
+    <td>{{ asset.name }}</td>
+    <td>{{ asset.asset_type }}</td>
+    <td>{{ asset.serial_number }}</td>
+    <td>{{ asset.status }}</td>
+    <td><a href="{% url 'request_asset_with_id' asset.id %}">Request</a></td>
+</tr>
+{% empty %}
+<tr>
+    <td colspan="5">No assets available</td>
+</tr>
+{% endfor %}
+</table>
+
+{% endblock %}
