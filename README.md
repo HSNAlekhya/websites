@@ -34,3 +34,17 @@ Content : Every web pages contained on the website together make up the content 
 
 The Navigation Structure: The navigation structure of a website is the order of the pages, the collection of what links to what. 
                           Usually, it is held together by at least one navigation menu.
+
+
+
+HOW TO ACCESS WEBSITES?
+
+To access a website:
+
+A user enters the website’s URL into a browser’s search bar.
+
+The browser sends a request to the web server.
+
+The web server delivers the requested web page and its content to the browser.
+
+The delivery process varies depending on whether the website is static or dynamic.
