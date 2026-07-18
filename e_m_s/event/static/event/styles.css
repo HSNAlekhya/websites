@@ -1,0 +1,165 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    background: linear-gradient(135deg, #f3f7ff, #eef6ff);
+    color: #1f2937;
+}
+
+.container {
+    max-width: 1000px;
+    margin: 2rem auto;
+    background: #ffffff;
+    padding: 2rem;
+    border-radius: 16px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+}
+
+.auth-container {
+    max-width: 500px;
+}
+
+h1 {
+    color: #1d4ed8;
+    margin-top: 0;
+}
+
+.top-nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 1rem;
+}
+
+.subtitle {
+    color: #64748b;
+    margin-bottom: 1.5rem;
+}
+
+.actions {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+}
+
+.actions a,
+.link {
+    color: #2563eb;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.actions a:hover,
+.link:hover {
+    text-decoration: underline;
+}
+
+.dashboard-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+}
+
+.card {
+    background: #f8fbff;
+    border: 1px solid #dbeafe;
+    border-radius: 12px;
+    padding: 1rem;
+}
+
+.card h3 {
+    margin: 0 0 0.3rem;
+    color: #1e3a8a;
+}
+
+.card p {
+    margin: 0;
+    font-size: 1.2rem;
+    font-weight: 700;
+}
+
+.section-block {
+    margin: 1.5rem 0 2rem;
+}
+
+.user-list {
+    list-style: none;
+    padding: 0;
+    display: grid;
+    gap: 0.5rem;
+}
+
+.user-list li {
+    background: #f8fbff;
+    border: 1px solid #dbeafe;
+    border-radius: 8px;
+    padding: 0.7rem 0.9rem;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 1rem;
+}
+
+th, td {
+    padding: 0.8rem;
+    border-bottom: 1px solid #e5e7eb;
+    text-align: left;
+}
+
+th {
+    background: #f8fafc;
+}
+
+.btn {
+    display: inline-block;
+    padding: 0.4rem 0.7rem;
+    border-radius: 6px;
+    margin-right: 0.3rem;
+    font-size: 0.95rem;
+}
+
+.btn-edit {
+    background: #f59e0b;
+    color: white;
+}
+
+.btn-delete {
+    background: #dc2626;
+    color: white;
+}
+
+form {
+    display: grid;
+    gap: 0.8rem;
+}
+
+input, textarea, select, button {
+    padding: 0.75rem;
+    font-size: 1rem;
+    border-radius: 8px;
+    border: 1px solid #cbd5e1;
+}
+
+button {
+    background: #2563eb;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+button:hover {
+    background: #1d4ed8;
+}
+
+.helptext {
+    font-size: 0.9rem;
+    color: #64748b;
+}
+
+.errorlist {
+    color: #b91c1c;
+    padding-left: 1rem;
+}

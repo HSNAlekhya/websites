@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Event Management System</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'event/styles.css' %}">
+</head>
+<body>
+    <div class="container">
+        <nav class="top-nav">
+            <h1>Event Management System</h1>
+            <div class="actions">
+                {% if user.is_authenticated %}
+                    <a href="{% url 'event-create' %}">Create New Event</a>
+                    <a href="{% url 'logout' %}">Logout</a>
+                {% else %}
+                    <a href="{% url 'login' %}">Login</a>
+                    <a href="{% url 'register' %}">Register</a>
+                {% endif %}
+            </div>
+        </nav>
+
+        <p class="subtitle">Manage your upcoming events from one place.</p>
+
+        <div class="dashboard-grid">
+            <div class="card">
+                <h3>Total Events</h3>
+                <p>{{ events.count }}</p>
+            </div>
+            <div class="card">
+                <h3>Registered Users</h3>
+                <p>{{ registrations_count }}</p>
+            </div>
+            <div class="card">
+                <h3>Status</h3>
+                <p>{% if user.is_authenticated %}Signed in{% else %}Guest{% endif %}</p>
+            </div>
+        </div>
+
+        <div class="section-block">
+            <h2>Registered Users</h2>
+            {% if registered_users %}
+                <ul class="user-list">
+                    {% for user in registered_users %}
+                        <li>{{ user.username }}</li>
+                    {% endfor %}
+                </ul>
+            {% else %}
+                <p>No registered users yet.</p>
+            {% endif %}
+        </div>
+
+        {% if events %}
+            <table>
+                <thead>
+                    <tr>
+                        <th>Title</th>
+                        <th>Date</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for event in events %}
+                        <tr>
+                            <td><a href="{% url 'event-detail' event.pk %}">{{ event.title }}</a></td>
+                            <td>{{ event.date }}</td>
+                            <td>{{ event.status }}</td>
+                            <td>
+                                <a class="btn btn-edit" href="{% url 'event-update' event.pk %}">Edit</a>
+                                <a class="btn btn-delete" href="{% url 'event-delete' event.pk %}" onclick="return confirm('Delete this event?')">Delete</a>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        {% else %}
+            <p>No events yet. Create one to get started.</p>
+        {% endif %}
+    </div>
+</body>
+</html>

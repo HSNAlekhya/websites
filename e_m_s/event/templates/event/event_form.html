@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ mode }} Event</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 2rem; background: #f6f8fb; }
+        .container { max-width: 600px; margin: auto; background: white; padding: 2rem; border-radius: 8px; }
+        form { display: grid; gap: 0.75rem; }
+        input, textarea, select, button { padding: 0.7rem; font-size: 1rem; }
+        button { background: #2563eb; color: white; border: none; cursor: pointer; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>{{ mode }} Event</h1>
+        <form method="post">
+            {% csrf_token %}
+            <input type="text" name="title" value="{{ event.title|default:'' }}" placeholder="Event title" required>
+            <textarea name="description" rows="4" placeholder="Event description">{{ event.description|default:'' }}</textarea>
+            <input type="date" name="date" value="{{ event.date|date:'Y-m-d' }}" required>
+            <select name="status">
+                <option value="Planned" {% if event.status == 'Planned' %}selected{% endif %}>Planned</option>
+                <option value="Ongoing" {% if event.status == 'Ongoing' %}selected{% endif %}>Ongoing</option>
+                <option value="Completed" {% if event.status == 'Completed' %}selected{% endif %}>Completed</option>
+            </select>
+            <button type="submit">Save</button>
+        </form>
+        <p><a href="{% url 'home' %}">Back to events</a></p>
+    </div>
+</body>
+</html>

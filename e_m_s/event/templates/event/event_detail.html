@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ event.title }}</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 2rem; background: #f6f8fb; }
+        .container { max-width: 700px; margin: auto; background: white; padding: 2rem; border-radius: 8px; }
+        a { color: #2563eb; text-decoration: none; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>{{ event.title }}</h1>
+        <p><strong>Date:</strong> {{ event.date }}</p>
+        <p><strong>Status:</strong> {{ event.status }}</p>
+        <p><strong>Description:</strong> {{ event.description|default:"No description provided." }}</p>
+        <p>
+            <a href="{% url 'event-update' event.pk %}">Edit</a> |
+            <a href="{% url 'event-delete' event.pk %}" onclick="return confirm('Delete this event?')">Delete</a> |
+            <a href="{% url 'home' %}">Back to list</a>
+        </p>
+    </div>
+</body>
+</html>
