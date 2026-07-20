@@ -1,0 +1,35 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>URL Shortener</title>
+    <link rel="stylesheet" href="{% static 'short/styles.css' %}">
+</head>
+<body>
+    <div class="container">
+        <div class="card">
+            <h1>Shorten a long URL</h1>
+            <p>Paste any long link and turn it into a short, shareable URL.</p>
+
+            <form method="post">
+                {% csrf_token %}
+                <input type="url" name="original_url" placeholder="https://example.com/very/long/url" required>
+                <button type="submit">Shorten</button>
+            </form>
+
+            {% if error %}
+                <div class="message error">{{ error }}</div>
+            {% endif %}
+
+            {% if short_url %}
+                <div class="message success">
+                    <p>Your short URL:</p>
+                    <a href="{{ short_url }}" target="_blank" rel="noopener noreferrer">{{ short_url }}</a>
+                </div>
+            {% endif %}
+        </div>
+    </div>
+</body>
+</html>
