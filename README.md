@@ -27,7 +27,7 @@ Homepage : The home page is the first webpage a visitor sees.
            It sets the look and feel of the website and guides users to the rest of its pages.
 
 Design : It is the final and overall look and feel of the website that has a result of 
-         proper use and integration elements like navigation menus, graphics, layout, navigation menus etc
+         proper use and integration elements like navigation menus, graphics, layout, navigation menus etc.
 
 Content : Every web pages contained on the website together make up the content of the website. 
           Good content on the webpages makes the website more effective and attractive.
