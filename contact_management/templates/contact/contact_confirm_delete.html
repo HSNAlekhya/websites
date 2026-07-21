@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Delete Contact</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+    <div class="container form-container">
+        <h1>Delete Contact</h1>
+        <p>Are you sure you want to delete <strong>{{ object.name }}</strong>?</p>
+        <form method="post">
+            {% csrf_token %}
+            <div class="actions">
+                <button class="btn btn-danger" type="submit">Delete</button>
+                <a class="btn btn-secondary" href="{% url 'contact_list' %}">Cancel</a>
+            </div>
+        </form>
+    </div>
+</body>
+</html>

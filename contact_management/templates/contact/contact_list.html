@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Management</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+    <div class="container">
+        <h1>Contact Management</h1>
+        <div class="top-bar">
+            <a class="btn btn-primary" href="{% url 'contact_create' %}">Add Contact</a>
+            <form method="get" class="search-form">
+                <input type="text" name="q" value="{{ query }}" placeholder="Search by name">
+                <button class="btn btn-secondary" type="submit">Search</button>
+            </form>
+        </div>
+
+        {% if contacts %}
+            <div class="card-grid">
+                {% for contact in contacts %}
+                    <div class="card">
+                        <h2>{{ contact.name }}</h2>
+                        <p><strong>Email:</strong> {{ contact.email }}</p>
+                        <p><strong>Phone:</strong> {{ contact.phone }}</p>
+                        <p><strong>Info:</strong> {{ contact.information }}</p>
+                        <div class="actions">
+                            <a class="btn btn-secondary" href="{% url 'contact_update' contact.pk %}">Edit</a>
+                            <a class="btn btn-danger" href="{% url 'contact_delete' contact.pk %}">Delete</a>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        {% else %}
+            <p class="empty">No contacts yet. Create one to get started.</p>
+        {% endif %}
+    </div>
+</body>
+</html>
