@@ -1,0 +1,34 @@
+{% extends 'order/base.html' %}
+{% block title %}Orders | Order Desk{% endblock %}
+{% block content %}
+<section class="page-heading">
+    <div>
+        <p class="eyebrow">Operations / Orders</p>
+        <h1>Keep every order moving.</h1>
+        <p class="lede">Create, review, and update your customer orders from one calm workspace.</p>
+    </div>
+    <div class="stat-block"><strong>{{ orders|length }}</strong><span>total orders</span></div>
+</section>
+
+{% if orders %}
+<div class="order-table-wrap">
+    <table class="order-table">
+        <thead><tr><th>Order</th><th>Customer</th><th>Item</th><th>Total</th><th>Status</th><th></th></tr></thead>
+        <tbody>
+        {% for order in orders %}
+        <tr>
+            <td><a class="order-id" href="{% url 'order-detail' order.pk %}">#{{ order.pk|stringformat:'04d' }}</a><span class="muted">{{ order.created_at|date:'M j, Y' }}</span></td>
+            <td><strong>{{ order.customer_name }}</strong><span class="muted">{{ order.customer_email }}</span></td>
+            <td><strong>{{ order.product_name }}</strong><span class="muted">{{ order.quantity }} × ${{ order.unit_price|floatformat:2 }}</span></td>
+            <td class="total">${{ order.total_price|floatformat:2 }}</td>
+            <td><span class="status status-{{ order.status }}">{{ order.get_status_display }}</span></td>
+            <td class="row-actions"><a href="{% url 'order-update' order.pk %}" aria-label="Edit order #{{ order.pk }}">Edit</a><a class="danger-link" href="{% url 'order-delete' order.pk %}" aria-label="Delete order #{{ order.pk }}">Delete</a></td>
+        </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% else %}
+<div class="empty-state"><span class="empty-icon">+</span><h2>No orders yet</h2><p>Your first order will appear here.</p><a class="button button-primary" href="{% url 'order-create' %}">Create an order</a></div>
+{% endif %}
+{% endblock %}

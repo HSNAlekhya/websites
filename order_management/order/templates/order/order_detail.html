@@ -1,0 +1,11 @@
+{% extends 'order/base.html' %}
+{% block title %}Order #{{ object.pk }} | Order Desk{% endblock %}
+{% block content %}
+<a class="back-link" href="{% url 'order-list' %}">← Back to orders</a>
+<section class="detail-header"><div><p class="eyebrow">Order #{{ object.pk|stringformat:'04d' }}</p><h1>{{ object.product_name }}</h1><p class="lede">Placed {{ object.created_at|date:'F j, Y' }} at {{ object.created_at|date:'g:i A' }}</p></div><span class="status status-{{ object.status }}">{{ object.get_status_display }}</span></section>
+<div class="detail-grid">
+    <section class="info-panel"><p class="panel-label">Customer</p><h2>{{ object.customer_name }}</h2><a href="mailto:{{ object.customer_email }}">{{ object.customer_email }}</a></section>
+    <section class="info-panel"><p class="panel-label">Order total</p><h2>${{ object.total_price|floatformat:2 }}</h2><p class="muted">{{ object.quantity }} × ${{ object.unit_price|floatformat:2 }}</p></section>
+</div>
+<div class="actions"><a class="button button-primary" href="{% url 'order-update' object.pk %}">Edit order</a><a class="button button-quiet" href="{% url 'order-delete' object.pk %}">Delete order</a></div>
+{% endblock %}
