@@ -1,0 +1,27 @@
+{% extends 'coupen/base.html' %}
+{% block title %}Overview | Coupon desk{% endblock %}
+{% block content %}
+<header class="page-header">
+    <div><p class="eyebrow">PROMOTION CONTROL</p><h1>Coupon overview</h1><p class="subtitle">Keep every offer clear, current, and ready to convert.</p></div>
+    <a class="button button-primary" href="{% url 'coupon_create' %}">＋ New coupon</a>
+</header>
+<section class="stats-grid">
+    <div class="stat-card"><span class="stat-label">Total coupons</span><strong>{{ stats.total }}</strong><span class="stat-caption">All offers in your desk</span></div>
+    <div class="stat-card accent-card"><span class="stat-label">Live now</span><strong>{{ stats.active }}</strong><span class="stat-caption">Ready for customers</span></div>
+    <div class="stat-card"><span class="stat-label">Scheduled</span><strong>{{ stats.scheduled }}</strong><span class="stat-caption">Set to launch later</span></div>
+    <div class="stat-card"><span class="stat-label">Redemptions</span><strong>{{ stats.redemptions }}</strong><span class="stat-caption">Total uses recorded</span></div>
+</section>
+<section class="content-panel">
+    <div class="panel-heading"><div><h2>All coupons</h2><p>Manage the offers customers see at checkout.</p></div><form class="filter-form" method="get"><input name="q" value="{{ query }}" placeholder="Search codes or descriptions" aria-label="Search codes or descriptions"><select name="status" aria-label="Filter coupons by status"><option value="">All statuses</option><option value="active" {% if status == 'active' %}selected{% endif %}>Active</option><option value="scheduled" {% if status == 'scheduled' %}selected{% endif %}>Scheduled</option><option value="paused" {% if status == 'paused' %}selected{% endif %}>Paused</option><option value="expired" {% if status == 'expired' %}selected{% endif %}>Expired</option></select><button class="button button-light" type="submit">Filter</button></form></div>
+    {% if coupons %}
+    <div class="table-wrap"><table><thead><tr><th>Code</th><th>Offer</th><th>Schedule</th><th>Usage</th><th>Status</th><th></th></tr></thead><tbody>
+    {% for coupon in coupons %}<tr><td><span class="coupon-code">{{ coupon.code }}</span><small>{{ coupon.description|default:'No description' }}</small></td><td><strong>{{ coupon.discount_display }}</strong><small>Min. ${{ coupon.minimum_purchase|floatformat:2 }}</small></td><td><span>{{ coupon.starts_at|date:'M j, Y' }}</span><small>to {{ coupon.expires_at|date:'M j, Y' }}</small></td><td><span>{{ coupon.used_count }}{% if coupon.usage_limit %} / {{ coupon.usage_limit }}{% endif %}</span><small>redemptions</small></td><td><span class="status status-{{ coupon.status|lower|cut:' ' }}"><i></i>{{ coupon.status }}</span></td><td class="actions"><a href="{% url 'coupon_edit' coupon.pk %}" aria-label="Edit {{ coupon.code }}">Edit</a><form method="post" action="{% url 'coupon_delete' coupon.pk %}">{% csrf_token %}<button type="submit" aria-label="Delete {{ coupon.code }}" onclick="return confirm('Delete this coupon?');">Delete</button></form></td></tr>{% endfor %}
+    </tbody></table></div>
+    {% else %}<div class="empty-state"><div class="empty-mark">%</div><h3>No coupons found</h3><p>Create your first offer or adjust the filters above.</p><a class="button button-primary" href="{% url 'coupon_create' %}">Create a coupon</a></div>{% endif %}
+</section>
+<section class="agent-panel" id="coupon-agent">
+    <div class="agent-orbit">✦</div>
+    <div class="agent-copy"><p class="eyebrow">TASK AGENT</p><h2>Ask Coupon Agent</h2><p>Give me a promotion task in plain English. It will execute create, pause, activate, delete, view, and inspection tasks automatically.</p><div class="agent-chips"><span>“create a 15% coupon named SAVE15”</span><span>“view all coupons”</span></div></div>
+    <form class="agent-form" method="post" action="{% url 'agent_task' %}">{% csrf_token %}<label for="agent-command">Your task</label><div><input id="agent-command" name="command" placeholder="What should I do?" autocomplete="off" required><button class="button button-primary" type="submit">Run task <span>→</span></button></div></form>
+</section>
+{% endblock %}

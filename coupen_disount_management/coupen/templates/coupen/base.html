@@ -1,0 +1,33 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{% block title %}Coupon desk{% endblock %}</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'css/site.css' %}">
+    <link rel="stylesheet" href="{% static 'css/agent.css' %}">
+</head>
+<body>
+    <div class="app-shell">
+        <aside class="sidebar">
+            <a class="brand" href="{% url 'dashboard' %}"><span class="brand-mark">%</span><span>Coupon<br>desk</span></a>
+            <nav>
+                <a class="nav-link active" href="{% url 'dashboard' %}"><span>▦</span> Overview</a>
+                <a class="nav-link" href="{% url 'coupon_create' %}"><span>＋</span> Create coupon</a>
+                <a class="nav-link" href="{% url 'dashboard' %}#coupon-agent"><span>✦</span> Coupon Agent</a>
+            </nav>
+            <div class="sidebar-note"><span class="pulse"></span> Store promotions<br><strong>Working smoothly</strong></div>
+        </aside>
+        <main class="main-content">
+            {% if messages %}
+                {% for message in messages %}<div class="message">{{ message }}</div>{% endfor %}
+            {% endif %}
+            {% block content %}{% endblock %}
+        </main>
+    </div>
+</body>
+</html>

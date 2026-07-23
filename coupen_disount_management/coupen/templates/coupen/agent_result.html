@@ -1,0 +1,6 @@
+{% extends 'coupen/base.html' %}
+{% block title %}Agent result | Coupon desk{% endblock %}
+{% block content %}
+<header class="page-header compact"><div><p class="eyebrow">TASK AGENT</p><h1>Task complete</h1><p class="subtitle">Coupon Agent processed your request.</p></div><a class="button button-light" href="{% url 'dashboard' %}">Back to overview</a></header>
+<section class="agent-result"><div class="result-icon">✦</div><p class="eyebrow">AUTONOMOUS ACTION COMPLETE</p><p class="result-command">{{ command }}</p><div class="result-line"></div><h2>{{ response }}</h2>{% if affected %}<p class="result-meta">Updated automatically: {% for code in affected %}<strong>{{ code }}</strong>{% if not forloop.last %}, {% endif %}{% endfor %}</p>{% endif %}<a class="button button-primary" href="{% url 'dashboard' %}">View coupons</a></section>
+{% endblock %}
