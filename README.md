@@ -1,3 +1,5 @@
+OVERVIEW OF A WEBSITE:
+
 A website is a collection of web pages written in HTML. 
 
 To make it accessible worldwide, it must be stored on a computer connected to the Internet 24/7.
