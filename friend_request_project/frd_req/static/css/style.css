@@ -1,0 +1,54 @@
+body{
+    font-family:Arial;
+    background:#f2f2f2;
+}
+
+.container{
+    width:700px;
+    margin:30px auto;
+    background:white;
+    padding:20px;
+    border-radius:8px;
+}
+
+h1{
+    text-align:center;
+}
+
+table{
+    width:100%;
+    border-collapse:collapse;
+    margin-top:20px;
+}
+
+table,th,td{
+    border:1px solid gray;
+}
+
+th,td{
+    padding:10px;
+    text-align:center;
+}
+
+a{
+    text-decoration:none;
+    padding:8px 12px;
+    border-radius:5px;
+    color:white;
+}
+
+.send{
+    background:green;
+}
+
+.accept{
+    background:blue;
+}
+
+.delete{
+    background:red;
+}
+
+.remove{
+    background:orange;
+}

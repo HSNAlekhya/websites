@@ -1,0 +1,60 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Friend Request System</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+
+<div class="container">
+
+<h1>Friend Request System</h1>
+
+<a href="{% url 'requests' %}">View Requests</a>
+
+<h2>All Users</h2>
+
+<table>
+
+<tr>
+<th>Username</th>
+<th>Action</th>
+</tr>
+
+{% for user in users %}
+
+<tr>
+
+<td>{{ user.username }}</td>
+
+<td>
+
+{% if user in friends %}
+<a class="remove" href="{% url 'remove' user.id %}">
+Remove Friend
+</a>
+
+{% elif user.id in sent %}
+Request Sent
+
+{% else %}
+<a class="send" href="{% url 'send' user.id %}">
+Send Request
+</a>
+
+{% endif %}
+
+</td>
+
+</tr>
+
+{% endfor %}
+
+</table>
+
+</div>
+
+</body>
+</html>

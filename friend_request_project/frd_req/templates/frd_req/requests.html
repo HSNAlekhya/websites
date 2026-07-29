@@ -1,0 +1,71 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+<head>
+<title>Requests</title>
+
+<link rel="stylesheet"
+href="{% static 'css/style.css' %}">
+
+</head>
+
+<body>
+
+<div class="container">
+
+<h1>Friend Requests</h1>
+
+<a href="{% url 'home' %}">
+Home
+</a>
+
+<table>
+
+<tr>
+<th>Username</th>
+<th>Action</th>
+</tr>
+
+{% for request in requests %}
+
+<tr>
+
+<td>{{ request.from_user.username }}</td>
+
+<td>
+
+<a class="accept"
+href="{% url 'accept' request.id %}">
+Accept
+</a>
+
+<a class="delete"
+href="{% url 'delete' request.id %}">
+Delete
+</a>
+
+</td>
+
+</tr>
+
+{% empty %}
+
+<tr>
+
+<td colspan="2">
+
+No Friend Requests
+
+</td>
+
+</tr>
+
+{% endfor %}
+
+</table>
+
+</div>
+
+</body>
+</html>
