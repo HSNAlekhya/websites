@@ -43,10 +43,10 @@ HOW TO ACCESS WEBSITES?
 
 To access a website:
 
-A user enters the website’s URL into a browser’s search bar.
+- A user enters the website’s URL into a browser’s search bar.
 
-The browser sends a request to the web server.
+- The browser sends a request to the web server.
 
-The web server delivers the requested web page and its content to the browser.
+- The web server delivers the requested web page and its content to the browser.
 
-The delivery process varies depending on whether the website is static or dynamic.
+- The delivery process varies depending on whether the website is static or dynamic.
