@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wishlist | StyleHub</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 0; background: #f7f7f7; color: #222; }
+        .container { max-width: 1000px; margin: 0 auto; padding: 24px; }
+        .card { background: white; border-radius: 18px; padding: 20px; box-shadow: 0 8px 24px rgba(0,0,0,0.06); }
+        .item { padding: 10px 0; border-bottom: 1px solid #eee; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="{% url 'home' %}" style="text-decoration:none;color:#c21f48;font-weight:bold;">← Home</a>
+        <div class="card" style="margin-top: 16px;">
+            <h1>Wishlist</h1>
+            {% if wishlist_items %}
+                {% for product in wishlist_items %}
+                    <div class="item">
+                        <strong>{{ product.name }}</strong><br>
+                        <span>₹{{ product.price }}</span>
+                    </div>
+                {% endfor %}
+            {% else %}
+                <p>Your wishlist is empty.</p>
+            {% endif %}
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Search Results | StyleHub</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 0; background: #f7f7f7; color: #222; }
+        .container { max-width: 1100px; margin: 0 auto; padding: 24px; }
+        .grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+        .card { background: white; border-radius: 16px; padding: 16px; box-shadow: 0 6px 18px rgba(0,0,0,0.06); }
+        .price { color: #0f7a2f; font-weight: 700; }
+        a { color: inherit; text-decoration: none; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="/" style="text-decoration:none;color:#c21f48;font-weight:bold;">← Home</a>
+        <h1>Search Results</h1>
+        {% if query %}
+            <p>Showing results for "{{ query }}"</p>
+        {% endif %}
+        <div class="grid">
+            {% for product in products %}
+                <div class="card">
+                    <a href="{% url 'product_detail' product.category.slug product.slug %}">
+                        <h3>{{ product.name }}</h3>
+                        <p>{{ product.description|truncatechars:80 }}</p>
+                        <p class="price">₹{{ product.price }}</p>
+                    </a>
+                </div>
+            {% empty %}
+                <p>No products found.</p>
+            {% endfor %}
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ category.name }} | StyleHub</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 0; background: linear-gradient(135deg, #fff7fb 0%, #fffbe8 100%); color: #1f2937; }
+        .container { max-width: 1180px; margin: 0 auto; padding: 24px; }
+        .header { display: flex; justify-content: space-between; align-items: center; gap: 16px; margin-bottom: 20px; }
+        .header h1 { margin: 0 0 6px; font-size: 2rem; }
+        .header p { margin: 0; color: #6b7280; }
+        .summary { margin-bottom: 18px; color: #6b7280; font-size: 0.95rem; }
+        .grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; }
+        .card { background: white; border: 1px solid #f7e8ec; border-radius: 20px; padding: 14px; box-shadow: 0 12px 30px rgba(15,23,42,0.05); transition: transform 0.2s ease, box-shadow 0.2s ease; }
+        .card:hover { transform: translateY(-3px); box-shadow: 0 18px 36px rgba(15,23,42,0.08); }
+        .card a { text-decoration: none; color: inherit; display: block; }
+        .product-image { width: 100%; height: 190px; object-fit: cover; border-radius: 14px; margin-bottom: 12px; }
+        .badge { display: inline-block; padding: 4px 8px; background: #ffe8ef; color: #c21f48; border-radius: 999px; font-size: 0.78rem; font-weight: 700; margin-bottom: 8px; }
+        .price { color: #0f7a2f; font-weight: 700; margin: 8px 0 6px; }
+        .meta { color: #6b7280; font-size: 0.9rem; margin: 0 0 6px; }
+        .product-name { margin: 0 0 4px; font-size: 1rem; }
+        .link { color: #c21f48; font-weight: 700; margin-top: 8px; }
+        @media (max-width: 900px) { .grid { grid-template-columns: repeat(2, 1fr); } }
+        @media (max-width: 640px) { .grid { grid-template-columns: 1fr; } .header { flex-direction: column; align-items: flex-start; } }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <div>
+                <h1>{{ category.name }}</h1>
+                <p>{{ category.description }}</p>
+            </div>
+            <a href="{% url 'home' %}" class="link">← Back to Home</a>
+        </div>
+
+        <div class="summary">Showing up to 20 items from this category.</div>
+
+        <div class="grid">
+            {% for product in products %}
+                <div class="card">
+                    <a href="{% url 'product_detail' category.slug product.slug %}">
+                        {% if product.image_url %}
+                            <img class="product-image" src="{{ product.image_url }}" alt="{{ product.name }}">
+                        {% else %}
+                            <img class="product-image" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='800' height='600'%3E%3Crect width='100%25' height='100%25' fill='%23fff3f6'/%3E%3Crect x='40' y='40' width='720' height='520' rx='24' fill='white' stroke='%23ffd7e2' stroke-width='4'/%3E%3Ccircle cx='280' cy='240' r='90' fill='%23ff4d6d' opacity='0.18'/%3E%3Ccircle cx='520' cy='240' r='70' fill='%23ff8c42' opacity='0.20'/%3E%3Cpath d='M250 260c20-60 120-70 150-10 28 55-30 120-60 135-35 17-90 4-90-125z' fill='%23c21f48' opacity='0.85'/%3E%3Ctext x='50%25' y='500' dominant-baseline='middle' text-anchor='middle' font-family='Arial' font-size='26' fill='%23c21f48'%3EStyleHub%3C/text%3E%3C/svg%3E" alt="{{ product.name }}">
+                        {% endif %}
+                        <span class="badge">{{ product.badge|default:'Fresh' }}</span>
+                        <h3 class="product-name">{{ product.name }}</h3>
+                        <p class="meta">{{ product.brand|default:'StyleHub' }}</p>
+                        <p class="price">₹{{ product.price }}</p>
+                        <p class="meta">{{ product.description|truncatechars:70 }}</p>
+                        <p class="link">View details →</p>
+                    </a>
+                </div>
+            {% empty %}
+                <p>No products are available in this category right now. Please check back soon.</p>
+            {% endfor %}
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Checkout | StyleHub</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 0; background: #fffaf8; color: #1f2937; }
+        .container { max-width: 1000px; margin: 0 auto; padding: 24px; }
+        .card { background: white; border: 1px solid #f4e4e8; border-radius: 20px; padding: 20px; box-shadow: 0 16px 40px rgba(15,23,42,0.06); }
+        .item { display: flex; justify-content: space-between; align-items: center; padding: 10px 0; border-bottom: 1px solid #f4e4e8; }
+        .btn { display: inline-block; margin-top: 16px; padding: 12px 16px; background: #ff4d6d; color: white; text-decoration: none; border-radius: 999px; }
+        .link { color: #c21f48; font-weight: 700; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="/" class="link">← Back</a>
+        <div class="card" style="margin-top: 16px;">
+            <h1>Checkout</h1>
+            {% if cart_items %}
+                {% for item in cart_items %}
+                    <div class="item">
+                        <strong>{{ item.product.name }}</strong> × {{ item.quantity }}
+                        <span>₹{{ item.subtotal }}</span>
+                    </div>
+                {% endfor %}
+                <div style="margin-top: 16px; font-size: 1.1rem;"><strong>Total:</strong> ₹{{ total }}</div>
+                <a class="btn" href="/order-confirmed/">Place Order</a>
+            {% else %}
+                <p>Your cart is empty. Add products before checkout.</p>
+            {% endif %}
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>StyleHub | Colorful Fashion Store</title>
+    <style>
+        :root {
+            --text: #1f2937;
+            --muted: #6b7280;
+            --accent: #ff4d6d;
+            --accent-dark: #c21f48;
+            --card: #ffffff;
+            --border: #f7e8ec;
+        }
+
+        * { box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body {
+            margin: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            color: var(--text);
+            background: linear-gradient(135deg, #fff7fb 0%, #fffbe8 50%, #f2f7ff 100%);
+        }
+
+        a { text-decoration: none; color: inherit; }
+
+        .topbar {
+            position: sticky;
+            top: 0;
+            z-index: 20;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 16px 24px;
+            background: rgba(255,255,255,0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--border);
+        }
+
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 1.35rem;
+            font-weight: 800;
+            color: var(--accent-dark);
+        }
+
+        .brand-badge {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 42px;
+            height: 42px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--accent), #ff8c42);
+            color: white;
+        }
+
+        .nav-links { display: flex; flex-wrap: wrap; gap: 10px; }
+        .nav-links a {
+            padding: 7px 10px;
+            border-radius: 999px;
+            color: var(--muted);
+            font-weight: 600;
+        }
+        .nav-links a:hover { background: #fff1f4; color: var(--accent-dark); }
+
+
+        .search-form {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        .search-input {
+            padding: 6px 10px;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            font-size: 14px;
+        }
+
+        .search-btn {
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        .container { max-width: 1180px; margin: 0 auto; padding: 24px 24px 40px; }
+
+        .hero {
+            display: grid;
+            grid-template-columns: 1.1fr 0.9fr;
+            gap: 20px;
+            align-items: center;
+            margin-bottom: 24px;
+        }
+
+        .hero-card {
+            padding: 28px;
+            border-radius: 24px;
+            background: linear-gradient(135deg, #ffe4ec 0%, #fff6de 100%);
+            box-shadow: 0 16px 40px rgba(15,23,42,0.06);
+        }
+
+        .eyebrow {
+            display: inline-block;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+            font-size: 0.78rem;
+            font-weight: 700;
+            letter-spacing: 1.8px;
+            color: var(--accent);
+        }
+
+        h1 { font-size: 2.2rem; margin: 0 0 10px; }
+        .hero p { color: var(--muted); margin: 0 0 14px; line-height: 1.6; }
+
+        .btn-row { display: flex; gap: 10px; flex-wrap: wrap; }
+        .btn-row a {
+            display: inline-block;
+            padding: 10px 14px;
+            border-radius: 999px;
+            font-weight: 700;
+        }
+        .primary { background: var(--accent); color: white; }
+        .secondary { background: white; color: var(--text); border: 1px solid #e8dfe3; }
+
+        .hero-visual {
+            min-height: 280px;
+            border-radius: 24px;
+            background: linear-gradient(135deg, #ffd6e0 0%, #cce8ff 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 5.5rem;
+            box-shadow: 0 16px 40px rgba(15,23,42,0.06);
+        }
+
+        .section { padding: 8px 0 10px; scroll-margin-top: 90px; }
+        .section-title { display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; }
+        .section-title h2 { margin: 0; font-size: 1.15rem; }
+        .section-title span { color: var(--muted); font-size: 0.9rem; }
+
+        .cards { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; }
+        .card {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 18px;
+            padding: 16px;
+            box-shadow: 0 10px 26px rgba(15,23,42,0.04);
+        }
+        .icon { font-size: 1.7rem; margin-bottom: 8px; }
+        .card h3 { margin: 4px 0 6px; }
+        .card p { color: var(--muted); margin: 0; font-size: 0.95rem; line-height: 1.5; }
+
+        .highlight-row {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 12px;
+            margin-top: 14px;
+        }
+        .highlight {
+            padding: 12px;
+            border-radius: 14px;
+            background: white;
+            border: 1px solid var(--border);
+        }
+        .highlight strong { display: block; margin-bottom: 4px; }
+
+        @media (max-width: 900px) {
+            .hero, .cards, .highlight-row { grid-template-columns: 1fr 1fr; }
+        }
+
+        @media (max-width: 640px) {
+            .topbar { flex-direction: column; gap: 10px; }
+            .hero, .cards, .highlight-row { grid-template-columns: 1fr; }
+            .hero-card { padding: 22px; }
+        }
+    </style>
+</head>
+<body>
+    <header class="topbar">
+        <div class="brand">
+            <span class="brand-badge">✦</span>
+            <span>StyleHub</span>
+        </div>
+        <nav class="nav-links">
+            <form action="/search/" method="get" class="search-form">
+                <input type="text" name="q" placeholder="Search products..." class="search-input">
+                <button type="submit" class="search-btn">🔍</button>
+            </form>
+            <a href="#featured">Featured</a>
+            <a href="#deals">Deals</a>
+            <a href="/wishlist/">Wishlist</a>
+            <a href="/cart/">Cart</a>
+            <a href="/login/">Login</a>
+            <a href="/logout/">Logout</a>
+        </nav>
+    </header>
+
+    <main class="container">
+        <section class="hero">
+            <div class="hero-card">
+                <div class="eyebrow">Premium fashion made easy</div>
+                <h1>Fresh styles for every mood and moment.</h1>
+                <p>Discover bright picks, fresh essentials, and easy shopping for your everyday look.</p>
+                <div class="btn-row">
+                    <a href="#featured" class="primary">Shop Now</a>
+                    <a href="#deals" class="secondary">Explore Deals</a>
+                </div>
+            </div>
+            <div class="hero-visual">🛍️</div>
+        </section>
+
+        <section id="featured" class="section">
+            <div class="section-title">
+                <h2>Shop by category</h2>
+                <span>Simple and colorful</span>
+            </div>
+            <div class="cards">
+                <div class="card">
+                    <a href="/category/womens-wear/">
+                        <div class="icon">👗</div>
+                        <h3>Women's Wear</h3>
+                        <p>Elegant styles that feel effortless and fresh.</p>
+                    </a>
+                </div>
+                <div class="card">
+                    <a href="/category/mens-wear/">
+                        <div class="icon">👔</div>
+                        <h3>Men's Wear</h3>
+                        <p>Clean looks for daily comfort and smart style.</p>
+                    </a>
+                </div>
+                <div class="card">
+                    <a href="/category/accessories/">
+                        <div class="icon">👜</div>
+                        <h3>Accessories</h3>
+                        <p>Colorful extras to finish your look.</p>
+                    </a>
+                </div>
+                <div class="card">
+                    <a href="/category/kids-wear/">
+                        <div class="icon">👕</div>
+                        <h3>Kids Wear</h3>
+                        <p>Happy, playful pieces made for comfort.</p>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <section id="deals" class="section">
+            <div class="section-title">
+                <h2>Hot deals this week</h2>
+                <span>Clear picks only</span>
+            </div>
+            <div class="highlight-row">
+                <div class="highlight">
+                    <strong>Flash sale</strong>
+                    <span>Up to 50% off favorites</span>
+                </div>
+                <div class="highlight">
+                    <strong>Free delivery</strong>
+                    <span>On orders above ₹999</span>
+                </div>
+                <div class="highlight">
+                    <strong>Easy returns</strong>
+                    <span>Hassle-free exchanges</span>
+                </div>
+                <div class="highlight">
+                    <strong>24/7 support</strong>
+                    <span>Always here to help</span>
+                </div>
+            </div>
+        </section>
+    </main>
+</body>
+</html>

@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ product.name }} | StyleHub</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 0; background: linear-gradient(135deg, #fff7fb 0%, #fffbe8 100%); color: #1f2937; }
+        .container { max-width: 1180px; margin: 0 auto; padding: 24px; }
+        .card { background: white; border: 1px solid #f7e8ec; border-radius: 24px; padding: 24px; box-shadow: 0 16px 40px rgba(15,23,42,0.06); }
+        .grid { display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 24px; }
+        .product-image { width: 100%; max-height: 320px; object-fit: cover; border-radius: 16px; margin-bottom: 16px; }
+        .product-thumb {
+            width: 100%;
+            height: 220px;
+            object-fit: cover;
+            border-radius: 12px;
+            margin-bottom: 10px;
+        }
+        .product-card {
+            background: white;
+            border-radius: 16px;
+            padding: 14px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.05);
+        }
+        .badge { display: inline-block; padding: 6px 10px; border-radius: 999px; background: #ffe6ee; color: #c21f48; font-weight: 700; margin-bottom: 10px; }
+        .price { font-size: 1.7rem; color: #0f7a2f; font-weight: 700; }
+        .details { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; margin-top: 18px; }
+        .detail-box { background: #fffdfc; border: 1px solid #f7e8ec; border-radius: 12px; padding: 12px; }
+        .btn { display: inline-block; margin-top: 16px; padding: 12px 16px; background: #ff4d6d; color: white; text-decoration: none; border-radius: 999px; }
+        .btn.secondary { background: #2b6cb0; margin-left: 8px; }
+        .link { color: #c21f48; font-weight: 700; }
+        @media (max-width: 768px) { .grid, .details { grid-template-columns: 1fr; } .btn.secondary { margin-left: 0; } }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="{% url 'home' %}" class="link">← Back to Home</a>
+        <div class="card" style="margin-top: 16px;">
+            <div class="grid">
+                <div>
+                    {% if product.image_url %}
+                        <img class="product-image" src="{{ product.image_url }}" alt="{{ product.name }}">
+                    {% else %}
+                        <img class="product-image" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='800' height='600'%3E%3Crect width='100%25' height='100%25' fill='%23fff3f6'/%3E%3Crect x='40' y='40' width='720' height='520' rx='24' fill='white' stroke='%23ffd7e2' stroke-width='4'/%3E%3Ccircle cx='280' cy='240' r='90' fill='%23ff4d6d' opacity='0.18'/%3E%3Ccircle cx='520' cy='240' r='70' fill='%23ff8c42' opacity='0.20'/%3E%3Cpath d='M250 260c20-60 120-70 150-10 28 55-30 120-60 135-35 17-90 4-90-125z' fill='%23c21f48' opacity='0.85'/%3E%3Ctext x='50%25' y='500' dominant-baseline='middle' text-anchor='middle' font-family='Arial' font-size='26' fill='%23c21f48'%3EStyleHub%3C/text%3E%3C/svg%3E" alt="{{ product.name }}">
+                    {% endif %}
+                    <div class="badge">{{ product.badge|default:'Featured' }}</div>
+                    <h1>{{ product.name }}</h1>
+                    <p>{{ product.description }}</p>
+                    <p class="price">₹{{ product.price }}</p>
+                    <a class="btn" href="{% url 'add_to_cart' product.id %}">Add to Cart</a>
+                    <a class="btn secondary" href="{% url 'add_to_wishlist' product.id %}">Add to Wishlist</a>
+                </div>
+                <div>
+                    <h3>Product details</h3>
+                    <div class="details">
+                        <div class="detail-box"><strong>Brand</strong><br>{{ product.brand|default:'StyleHub' }}</div>
+                        <div class="detail-box"><strong>Colour</strong><br>{{ product.colour|default:'Multi' }}</div>
+                        <div class="detail-box"><strong>Size</strong><br>{{ product.size|default:'One Size' }}</div>
+                        <div class="detail-box"><strong>Stock</strong><br>{{ product.stock }} available</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
