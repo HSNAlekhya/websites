@@ -1,14 +1,14 @@
 OVERVIEW OF A WEBSITE:
 
-A website is a collection of web pages written in HTML. 
+- A website is a collection of web pages written in HTML. 
 
-To make it accessible worldwide, it must be stored on a computer connected to the Internet 24/7.
+- To make it accessible worldwide, it must be stored on a computer connected to the Internet 24/7.
 
-These computers are called web servers.
+- These computers are called web servers.
 
-The website's web pages are linked with hyperlinks and hypertext and share a common interface and design.
+- The website's web pages are linked with hyperlinks and hypertext and share a common interface and design.
 
-The website might also contain some additional documents and files, such as images, videos, or other.
+- The website might also contain some additional documents and files, such as images, videos, or other.
 
 
 
