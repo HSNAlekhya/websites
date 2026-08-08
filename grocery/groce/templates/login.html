@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<h1>Login</h1>
+
+<form method="POST">
+
+{% csrf_token %}
+
+{{ form.as_p }}
+
+{% if message %}
+
+<p style="color:red;">
+
+{{ message }}
+
+</p>
+
+{% endif %}
+
+<button class="btn">
+
+Login
+
+</button>
+
+</form>
+
+{% endblock %}

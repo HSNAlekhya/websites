@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<h1>My Orders</h1>
+
+{% if orders %}
+
+<table class="cart-table">
+
+    <tr>
+
+        <th>Order ID</th>
+        <th>Date</th>
+        <th>Total</th>
+        <th>Status</th>
+        <th></th>
+
+    </tr>
+
+    {% for order in orders %}
+
+    <tr>
+
+        <td>#{{ order.id }}</td>
+
+        <td>{{ order.ordered_at }}</td>
+
+        <td>₹{{ order.total }}</td>
+
+        <td>{{ order.status }}</td>
+
+        <td>
+
+            <a href="{% url 'order_detail' order.id %}">
+                View
+            </a>
+
+        </td>
+
+    </tr>
+
+    {% endfor %}
+
+</table>
+
+{% else %}
+
+<h3>No Orders Found</h3>
+
+{% endif %}
+
+{% endblock %}

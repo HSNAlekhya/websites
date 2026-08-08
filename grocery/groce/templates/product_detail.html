@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="product-detail">
+
+    <div class="left">
+
+        <img src="{{ product.image.url }}" alt="{{ product.name }}">
+
+    </div>
+
+    <div class="right">
+
+        <h1>{{ product.name }}</h1>
+
+        <h2>₹{{ product.price }}</h2>
+
+        <p>{{ product.description }}</p>
+
+        <p><strong>Stock :</strong> {{ product.stock }}</p>
+
+        <p><strong>Category :</strong> {{ product.category.name }}</p>
+
+        {% if user.is_authenticated %}
+
+        <a class="btn" href="{% url 'add_to_cart' product.id %}">
+            Add To Cart
+        </a>
+
+        {% else %}
+
+        <a class="btn" href="{% url 'login' %}">
+            Login To Buy
+        </a>
+
+        {% endif %}
+
+    </div>
+
+</div>
+
+{% endblock %}

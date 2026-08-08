@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<h1>Order #{{ order.id }}</h1>
+
+<p>Status : {{ order.status }}</p>
+
+<p>Total : ₹{{ order.total }}</p>
+
+<table class="cart-table">
+
+<tr>
+
+<th>Product</th>
+<th>Price</th>
+<th>Quantity</th>
+<th>Total</th>
+
+</tr>
+
+{% for item in items %}
+
+<tr>
+
+<td>{{ item.product.name }}</td>
+
+<td>₹{{ item.price }}</td>
+
+<td>{{ item.quantity }}</td>
+
+<td>₹{{ item.subtotal }}</td>
+
+</tr>
+
+{% endfor %}
+
+</table>
+
+{% endblock %}

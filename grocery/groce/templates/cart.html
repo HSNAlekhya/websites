@@ -1,0 +1,104 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<h1>Shopping Cart</h1>
+
+{% if items %}
+
+<table class="cart-table">
+
+    <tr>
+
+        <th>Image</th>
+        <th>Product</th>
+        <th>Price</th>
+        <th>Quantity</th>
+        <th>Subtotal</th>
+        <th>Action</th>
+
+    </tr>
+
+    {% for item in items %}
+
+    <tr>
+
+        <td>
+
+            <img src="{{ item.product.image.url }}" width="80">
+
+        </td>
+
+        <td>
+
+            {{ item.product.name }}
+
+        </td>
+
+        <td>
+
+            ₹{{ item.product.price }}
+
+        </td>
+
+        <td>
+
+            <a href="{% url 'decrease_quantity' item.id %}">-</a>
+
+            {{ item.quantity }}
+
+            <a href="{% url 'increase_quantity' item.id %}">+</a>
+
+        </td>
+
+        <td>
+
+            ₹{{ item.subtotal }}
+
+        </td>
+
+        <td>
+
+            <a href="{% url 'remove' item.id %}">
+
+                Remove
+
+            </a>
+
+        </td>
+
+    </tr>
+
+    {% endfor %}
+
+</table>
+
+<h2>
+
+Grand Total : ₹{{ total }}
+
+</h2>
+
+<a class="btn" href="{% url 'checkout' %}">
+
+Proceed To Checkout
+
+</a>
+
+{% else %}
+
+<h2>
+
+Your Cart Is Empty
+
+</h2>
+
+<a class="btn" href="{% url 'home' %}">
+
+Continue Shopping
+
+</a>
+
+{% endif %}
+
+{% endblock %}
